@@ -1,8 +1,8 @@
 import React, {lazy,Suspense } from 'react';
 import './App.css';
-import {Routes,Route,Navigate} from 'react-router-dom'
+import {Routes,Route} from 'react-router-dom'
 
-const LazyComponent = lazy(() => import('./Forms'));
+const Forms = lazy(() => import('./Forms'));
 const RedirectedForm = lazy(() => import('./RedirectedForm'))
  const Popovers =lazy(()=>import('./Popovers'));
 
@@ -17,10 +17,9 @@ function App() {
         
         <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path='/' element={ <LazyComponent />}/>
+          <Route path='/' element={ <Forms />}/>
         <Route path="/RedirectedForm" element={<RedirectedForm />} />
         <Route path="/Popovers" element={<Popovers/>} />
-        {/* <Navigate  to='/Forms' replace={true}/> */}
         </Routes>
         </Suspense>
         

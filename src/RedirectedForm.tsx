@@ -1,10 +1,10 @@
 
 
 import React from 'react'
-import { Navigate } from 'react-router-dom';
-import Forms from './Forms';
+import {useNavigate } from 'react-router-dom';
  
 const RedirectedForm = () => {
+    const navigate= useNavigate()
     const [isAuthenticated, setIsAuthenticated] = React.useState(false);
      const storedData = JSON.parse(sessionStorage.getItem('user') || '{}')
  const password = storedData.password;
@@ -14,15 +14,14 @@ const RedirectedForm = () => {
       if (password && expiresAt) {
         const currentTime = new Date().getTime();
         const expiryTime = parseInt(expiresAt, 10);
-  
         if (currentTime <= expiryTime) {
           return setIsAuthenticated(true);
         } 
        
       }
       setIsAuthenticated(false);
-         <Navigate replace to={'/LazyComponent'}/>
       
+      navigate(-1)
   sessionStorage.removeItem('password');
   sessionStorage.removeItem('passwordExpiry');
      
@@ -34,7 +33,7 @@ const RedirectedForm = () => {
     }, []);
   return (
     <div>
-         {isAuthenticated ? (<div>Redirect</div>):(<div>Try TO Login Again</div>)}
+         {isAuthenticated ? (<div>Redirect</div>):(<div> Try to login</div>)}
         
         
         </div>

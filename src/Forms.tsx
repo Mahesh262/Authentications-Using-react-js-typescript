@@ -54,7 +54,7 @@ const handleChange= (e:React.ChangeEvent<HTMLInputElement>)=>{
       <input type="password" name='password' value={password} onChange={handleChange}/>
       <button type='submit'>Submit</button>
 </form>
-      {authResponse ? (<div>Hellow</div>): (<div>Null</div>)}
+      {authResponse ? (<div>Login</div>): (<div>Signup</div>)}
     </div>
   );
 }
